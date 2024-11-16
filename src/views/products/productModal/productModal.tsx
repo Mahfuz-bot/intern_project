@@ -1,9 +1,9 @@
-import React from "react";
-import { Product } from "@/types";
+import React from "react"
+import { Product } from "@/types"
 
 interface ProductModalProps {
-  product: Product;
-  onClose: () => void;
+  product: Product
+  onClose: () => void
 }
 
 export const ProductModal: React.FC<ProductModalProps> = ({
@@ -23,5 +23,5 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         <button onClick={onClose}>Close</button>
       </div>
     </div>
-  );
-};
+  )
+}
