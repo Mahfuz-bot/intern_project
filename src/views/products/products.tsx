@@ -48,6 +48,11 @@ export const Products: React.FC = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <div>
         <BackToHome />
+
+        <ProductList
+          products={paginatedProducts}
+          onOpenModal={handleOpenModal}
+        />
         <ProductList products={paginatedProducts} onOpenModal={handleOpenModal} />
         <div className="h-4" />
         <PaginationControls
