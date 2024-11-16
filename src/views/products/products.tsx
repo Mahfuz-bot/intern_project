@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useCallback, useState } from "react"
+import React, { useEffect, useCallback, useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Product } from "@/types"
 import { ProductModal } from "@/views/products/productModal/productModal"
@@ -45,18 +45,23 @@ export const Products: React.FC = () => {
   }, [router])
 
   return (
-    <div>
-      <BackToHome />
-      <ProductList products={paginatedProducts} onOpenModal={handleOpenModal} />
-      <div className="h-4" />
-      <PaginationControls
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      {selectedProduct && (
-        <ProductModal product={selectedProduct} onClose={handleCloseModal} />
-      )}
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        <BackToHome />
+        <ProductList
+          products={paginatedProducts}
+          onOpenModal={handleOpenModal}
+        />
+        <div className="h-4" />
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+        {selectedProduct && (
+          <ProductModal product={selectedProduct} onClose={handleCloseModal} />
+        )}
+      </div>
+    </Suspense>
   )
 }
